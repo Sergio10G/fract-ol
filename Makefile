@@ -6,7 +6,7 @@
 #    By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 17:51:37 by sdiez-ga          #+#    #+#              #
-#    Updated: 2022/02/10 19:25:49 by sdiez-ga         ###   ########.fr        #
+#    Updated: 2022/02/10 21:27:01 by sdiez-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,13 @@ BLUE		=	\033[1;36m
 RESET		=	\033[1;0m
 
 %.o				:	%.c
-					$(CC) $(CFLAGS) -Imlx -c $< -o $@
+					$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -c $< -o $@
 
 $(NAME)			:	$(OBJS)
 					echo "$(BLUE)Compiling...$(RESET)"
 					make -C minilibx/ --silent
 					echo "$(PINK)minilibX compiled!$(RESET)"
-					$(CC) $(OBJS) $(MLXFLAGS) -o $(NAME)
+					$(CC) $(OBJS) minilibx/libmlx.a minilibx/libmlx_Linux.a -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 					echo "$(GREEN)fract-ol compiled!$(RESET)"
 
 clean			:
