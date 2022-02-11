@@ -6,13 +6,16 @@
 #    By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 17:51:37 by sdiez-ga          #+#    #+#              #
-#    Updated: 2022/02/10 19:25:49 by sdiez-ga         ###   ########.fr        #
+#    Updated: 2022/02/11 17:28:32 by sdiez-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	fractol
 
-SRCS			=	src/main.c
+SRCS			=	src/main.c					\
+					src/metadata_funcs.c		\
+					src/complex_funcs.c			\
+					src/algorithm.c
 
 OBJS			=	$(SRCS:.c=.o)
 
@@ -38,6 +41,8 @@ $(NAME)			:	$(OBJS)
 					echo "$(PINK)minilibX compiled!$(RESET)"
 					$(CC) $(OBJS) $(MLXFLAGS) -o $(NAME)
 					echo "$(GREEN)fract-ol compiled!$(RESET)"
+
+all				:	$(NAME)
 
 clean			:
 					rm -f $(OBJS)
