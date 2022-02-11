@@ -6,13 +6,16 @@
 #    By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 17:51:37 by sdiez-ga          #+#    #+#              #
-#    Updated: 2022/02/10 21:27:01 by sdiez-ga         ###   ########.fr        #
+#    Updated: 2022/02/12 00:40:44 by sdiez-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	fractol
 
-SRCS			=	src/main.c
+SRCS			=	src/main.c			\
+					src/algorithm.c		\
+					src/complex_funcs.c	\
+					src/metadata_funcs.c
 
 OBJS			=	$(SRCS:.c=.o)
 
