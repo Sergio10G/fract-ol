@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:39:57 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/11 18:01:47 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/15 20:19:39 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 //	Libraries
 # include "../minilibx/mlx.h"
+# include "../libft/libft.h"
 # include <math.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
 
 // Structs
 
@@ -56,6 +58,24 @@ typedef struct	s_complex
 
 //	Functions
 
+/* fractol.c functions */
+
+
+/* input_parse.c */
+void	check_params(int argc, char **argv);
+void	check_colors(char *colors_cli);
+void	check_julia_params(char *params_cli);
+void	free_mat(char **str);
+
+/* hex_utils.c functions */
+int				is_in_base(char c);
+int				pos_in_base(char c);
+int				is_valid_hex(char *hex);
+unsigned int	hextoui(char *hex);
+
+/* utils.c functions */
+void	ft_strtoupper(char *str);
+
 /* metadata_funcs.c functions */
 t_metadata *init_metadata(int width, int height);
 
@@ -64,5 +84,8 @@ t_complex	*init_complex();
 
 /* algorithm.c functions */
 unsigned int	mandelbrot(t_complex z, t_complex c, unsigned int iters, unsigned int i);
+
+/* errors.c functions */
+void	err_print_options(int errnum);
 
 #endif

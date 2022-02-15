@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/11 15:33:46 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/15 20:13:37 by sdiez-ga         ###   ########.fr       */
+/*   Created: 2022/02/15 18:32:06 by sdiez-ga          #+#    #+#             */
+/*   Updated: 2022/02/15 19:33:44 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-unsigned int	mandelbrot(t_complex z, t_complex c, unsigned int iters, unsigned int i)
+void	ft_strtoupper(char *str)
 {
-	double	x;
-	double	y;
-	double	x_sq;
-	double	y_sq;
+	int	i;
 
-	x = z.re;
-	y = z.im;
-	x_sq = pow(x, 2);
-	y_sq = pow(y, 2);
-	if (iters == i)
-		return (i);
-	if (x_sq + y_sq > 4)
-		return (i);
-	else
+	i = 0;
+	while (str[i])
 	{
-		z.re = x_sq - y_sq + c.re;
-		z.im = 2 * x * y + c.im;
-		return (mandelbrot(z, c, iters, ++i));
+		if (ft_isalpha(str[i]))
+			str[i] = (char) ft_toupper(str[i]);
+		i++;
 	}
 }
+
