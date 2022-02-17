@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:51:04 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2021/09/21 20:27:22 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/01/25 20:31:35 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 typedef struct s_list
 {
-	void			*content;
+	int				content;
 	struct s_list	*next;
 }					t_list;
 
@@ -77,14 +77,14 @@ void	ft_putnbr_fd(int n, int fd);
 
 /* Bonus part */
 
-t_list	*ft_lstnew(void *content);
+t_list	*ft_lstnew(int content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstdelone(t_list *lst);
+void	ft_lstclear(t_list **lst);
 void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list	*ft_lstmap(t_list *lst, int (*f)(void *));
 
 #endif

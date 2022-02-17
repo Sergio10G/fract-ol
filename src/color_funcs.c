@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   color_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdiez-ga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 12:15:37 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/01/25 20:14:49 by sdiez-ga         ###   ########.fr       */
+/*   Created: 2022/02/17 18:56:41 by sdiez-ga          #+#    #+#             */
+/*   Updated: 2022/02/17 18:59:24 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/fractol.h"
 
-t_list	*ft_lstnew(int content)
+t_list	*init_colorscheme_1()
 {
-	t_list	*new;
+	t_list	*colors;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (0);
-	new->content = content;
-	new->next = 0;
-	return (new);
+	colors = ft_lstnew(0x00000000);
+	ft_
 }

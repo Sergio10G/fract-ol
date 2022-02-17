@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:39:57 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/15 20:19:39 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/17 19:18:55 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,11 @@
 # include <stdio.h>
 # include <string.h>
 
+//	Macros
+# define DEF_WIDTH 1920
+# define DEF_HEIGHT 1080
+
 // Structs
-
-typedef struct s_metadata
-{
-	int		width;
-	int		height;
-	double	scale;
-	double	offset_x;
-	double	offset_y;
-}				t_metadata;
-
-typedef struct	s_mlxvars
-{
-	void		*mlx;
-	void		*win;
-	t_metadata	*md;
-}				t_mlxvars;
 
 typedef struct	s_imgdata 
 {
@@ -56,34 +44,44 @@ typedef struct	s_complex
 	double im;
 }				t_complex;
 
+typedef struct	s_fractaldata
+{
+	unsigned int	(*fractal)(t_complex*, t_complex*, unsigned int, unsigned int);
+	t_list			**colors;
+}				t_fractaldata;
+
+typedef struct	s_vars
+{
+	void		*mlx;
+	void		*win;
+	int			width;
+	int			height;
+	double		scale;
+	double		offset_x;
+	double		offset_y;
+	t_imgdata	*img;
+}				t_vars;
 //	Functions
 
 /* fractol.c functions */
-
+void	print_image(t_vars *vars);
 
 /* input_parse.c */
 void	check_params(int argc, char **argv);
-void	check_colors(char *colors_cli);
 void	check_julia_params(char *params_cli);
-void	free_mat(char **str);
-
-/* hex_utils.c functions */
-int				is_in_base(char c);
-int				pos_in_base(char c);
-int				is_valid_hex(char *hex);
-unsigned int	hextoui(char *hex);
 
 /* utils.c functions */
 void	ft_strtoupper(char *str);
 
-/* metadata_funcs.c functions */
-t_metadata *init_metadata(int width, int height);
-
-/* complex_funcs.c functions */
-t_complex	*init_complex();
+/* init_structss.c functions */
+t_complex		*init_complex();
+t_vars			*init_vars();
+t_fractaldata	*init_fractaldata();
 
 /* algorithm.c functions */
 unsigned int	mandelbrot(t_complex z, t_complex c, unsigned int iters, unsigned int i);
+unsigned int	julia(t_complex z, t_complex c, unsigned int iters, unsigned int i);
+unsigned int	burning_ship(t_complex z, t_complex c, unsigned int iters, unsigned int i);
 
 /* errors.c functions */
 void	err_print_options(int errnum);

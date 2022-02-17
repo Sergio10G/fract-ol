@@ -6,16 +6,15 @@
 #    By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 17:51:37 by sdiez-ga          #+#    #+#              #
-#    Updated: 2022/02/11 17:28:32 by sdiez-ga         ###   ########.fr        #
+#    Updated: 2022/02/17 19:05:45 by sdiez-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	fractol
 
 SRCS			=	src/main.c					\
-					src/metadata_funcs.c		\
-					src/complex_funcs.c			\
-					src/algorithm.c
+					src/init_structs.c			\
+					src/algorithm.c	
 
 OBJS			=	$(SRCS:.c=.o)
 
@@ -39,7 +38,7 @@ $(NAME)			:	$(OBJS)
 					echo "$(BLUE)Compiling...$(RESET)"
 					make -C minilibx/ --silent
 					echo "$(PINK)minilibX compiled!$(RESET)"
-					$(CC) $(OBJS) $(MLXFLAGS) -o $(NAME)
+					$(CC) $(OBJS) $(MLXFLAGS) libft/libft.a -o $(NAME)
 					echo "$(GREEN)fract-ol compiled!$(RESET)"
 
 all				:	$(NAME)
