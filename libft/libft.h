@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:51:04 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/01/25 20:31:35 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/18 17:15:30 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 typedef struct s_list
 {
-	int				content;
+	unsigned int	content;
 	struct s_list	*next;
 }					t_list;
 
@@ -77,7 +77,7 @@ void	ft_putnbr_fd(int n, int fd);
 
 /* Bonus part */
 
-t_list	*ft_lstnew(int content);
+t_list	*ft_lstnew(unsigned int content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);

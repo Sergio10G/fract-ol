@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 15:33:46 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/17 18:35:42 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/18 17:05:39 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ unsigned int	burning_ship(t_complex z, t_complex c, unsigned int iters, unsigned
 	double	x_sq;
 	double	y_sq;
 
-	x = z.re;
-	y = z.im;
+	x = fabs(z.re);
+	y = fabs(z.im);
 	x_sq = pow(x, 2);
 	y_sq = pow(y, 2);
 	if (iters == i)
 		return (i);
-	if (x_sq + y_sq > 4)
+	if (x_sq + y_sq > 2)
 		return (i);
 	else
 	{

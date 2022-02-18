@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:39:57 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/17 19:18:55 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:02:56 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,22 @@ typedef struct	s_complex
 typedef struct	s_fractaldata
 {
 	unsigned int	(*fractal)(t_complex*, t_complex*, unsigned int, unsigned int);
+	unsigned int	iters;
 	t_list			**colors;
+	int				color_count;
 }				t_fractaldata;
 
 typedef struct	s_vars
 {
-	void		*mlx;
-	void		*win;
-	int			width;
-	int			height;
-	double		scale;
-	double		offset_x;
-	double		offset_y;
-	t_imgdata	*img;
+	void			*mlx;
+	void			*win;
+	int				width;
+	int				height;
+	double			scale;
+	double			offset_x;
+	double			offset_y;
+	t_imgdata		*id;
+	t_fractaldata	*fd;
 }				t_vars;
 //	Functions
 

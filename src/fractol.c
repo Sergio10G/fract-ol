@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:07:05 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/17 18:43:06 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:03:59 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,60 +15,46 @@
 int	main(int argc, char **argv)
 {
 	t_vars			*vars;
-	t_fractaldata	*frcd;
+	t_fractaldata	*fd;
+	t_imgdata		*id;
 
 	if (argc < 2 || argc > 3)
 		err_print_options(1);
 	check_params(argc, argv);
-	frcd = init_fractaldata();
-	if (!frcd)
+	fd = init_fractaldata();
+	if (!fd)
 		err_print_options(12);
 	vars = init_vars();
 	if (!vars)
 	{
-		free(frcd);
+		free(fd);
 		err_print_options(12);
 	}
-	assign_fractal_func(argv[1], frcd);
-	assign_fractal_colors(0, frcd);
+	assign_fractal_func(argv[1], fd);
+	assign_fractal_colors(0, fd);
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, vars->width, vars->height, "fract-ol");
-
+	// print image
+	mlx_loop(vars->mlx);
 }
 
-void	assign_fractal_func(char *fractal_name, t_fractaldata *frcd)
+void	assign_fractal_func(char *fractal_name, t_fractaldata *fd)
 {
 	if (ft_strncmp(fractal_name, "mandelbrot", 11) == 0)
-		frcd->fractal = &mandelbrot;
+		fd->fractal = &mandelbrot;
 	else if (ft_strncmp(fractal_name, "julia", 6) == 0)
-		frcd->fractal = &julia;
+		fd->fractal = &julia;
 	else if (ft_strncmp(fractal_name, "bship", 6) == 0)
-		frcd->fractal = &burning_ship;
+		fd->fractal = &burning_ship;
 }
 
-void	assign_fractal_colors(int index, t_fractaldata *frcd)
+void	assign_fractal_colors(int index, t_fractaldata *fd)
 {
-	if (frcd->colors)
-		ft_lstclear(frcd->colors);
-	if (index == 1)
-	{
-	
-	}
-	else if(index == 2)
-	{
-	
-	}
-	else if(index == 3)
-	{
-	
-	}
-	else
-	{
-	
-	}
+	fd->colors = init_colorscheme_1();
+	fd->color_count = ft_lstsize(*(fd->colors));
 }
 
-void	stage_2(t_vars *vars, t_fractaldata *frcd)
+void	init_img()
 {
 
 }

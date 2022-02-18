@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:47:51 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/17 19:20:02 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/18 17:09:36 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,21 @@ void	print_image(t_vars *vars)
 {
 	t_complex	*z;
 	z = init_complex();
+	t_complex	*c;
+	c = init_complex();
 	for (int i = 0; i < vars->height; i++)
 	{
 		for (int j = 0; j < vars->width; j++)
 		{
+			c->re = 0.0;
+			c->im = 0.0;
 			z->re = (double) (j * 5) / vars->width * vars->scale;
 			z->im = (double) (i * 3) / vars->height * vars->scale;
 			z->re -= (double) (vars->offset_x) * vars->scale;
 			z->im -= (double) (vars->offset_y) * vars->scale;
 			//z->re = j - 960;
 			//z->im = i - 540;
-			unsigned int m = mandelbrot(*z, *z, 30, 0);
+			unsigned int m = burning_ship(*c, *z, 30, 0);
 			int color;
 			color = (m / 30.0) * 0x0000FF00;
 			//printf("(%f + %fi) %u\n",z->re, z->im,  m);
