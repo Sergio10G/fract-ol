@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdiez-ga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 13:33:33 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/01/25 20:17:02 by sdiez-ga         ###   ########.fr       */
+/*   Created: 2022/02/15 18:32:06 by sdiez-ga          #+#    #+#             */
+/*   Updated: 2022/02/15 19:33:44 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/fractol.h"
 
-void	ft_lstclear(t_list **lst)
+void	ft_strtoupper(char *str)
 {
-	t_list	*nxt;
+	int	i;
 
-	if (lst)
+	i = 0;
+	while (str[i])
 	{
-		while (*lst)
-		{
-			nxt = (*lst)->next;
-			ft_lstdelone(*lst);
-			*lst = nxt;
-		}
-		*lst = 0;
+		if (ft_isalpha(str[i]))
+			str[i] = (char) ft_toupper(str[i]);
+		i++;
 	}
 }
+
