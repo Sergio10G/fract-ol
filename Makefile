@@ -6,15 +6,20 @@
 #    By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 17:51:37 by sdiez-ga          #+#    #+#              #
-#    Updated: 2022/02/17 19:05:45 by sdiez-ga         ###   ########.fr        #
+#    Updated: 2022/02/22 19:10:18 by sdiez-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	fractol
 
-SRCS			=	src/main.c					\
-					src/init_structs.c			\
-					src/algorithm.c	
+SRCS			=	src/fractol.c					\
+					src/errors.c					\
+					src/img_funcs.c					\
+					src/input_parse.c				\
+					src/color_funcs.c				\
+					src/init_structs.c				\
+					src/utils.c						\
+					src/algorithm.c
 
 OBJS			=	$(SRCS:.c=.o)
 

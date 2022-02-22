@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:00:26 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/18 19:02:13 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/22 19:28:30 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_vars	*init_vars()
 	vars->scale = 1.0;
 	vars->offset_x = 3.0;
 	vars->offset_y = 1.5;
+	vars->mlx = mlx_init();
 	return (vars);
 }
 
@@ -44,6 +45,8 @@ t_fractaldata	*init_fractaldata()
 	t_fractaldata	*fd;
 
 	fd = ft_calloc(1, sizeof(t_fractaldata));
+	if (!fd)
+		return (0);
 	fd->iters = 30;
 	return (fd);
 }
@@ -56,7 +59,7 @@ t_imgdata	*init_imgdata(t_vars *vars)
 	if (!id)
 		return (0);
 	id->img = mlx_new_image(vars->mlx, vars->width, vars->height);
-	id->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), \
-		   &(img->line_length), &(img->endian));
+	id->addr = mlx_get_data_addr(id->img, &(id->bits_per_pixel), \
+		   &(id->line_length), &(id->endian));
 	return (id);
 }

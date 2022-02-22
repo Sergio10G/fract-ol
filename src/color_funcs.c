@@ -6,32 +6,44 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:56:41 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/18 19:06:08 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/22 19:58:36 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-t_list	**init_colorscheme_1()
+int	*init_colorscheme_1(t_vars *vars)
 {
-	t_list			*colors;
+	int				*colors;
 	unsigned int	gsc;
-	t_list			*tmp;
+	unsigned int	augment;
+	unsigned int	i;
 
+	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
+	if (!colors)
+		return (0);
 	gsc = 0x00000000;
-	colors = ft_lstnew(gsc);
-	gsc += 0x00080808;
-	while (gsc < 0x00FFFFFF)
+	colors[0] = gsc;
+	augment = 256 / vars->fd->iters;
+	i = 1;
+	while (i < vars->fd->iters)
 	{
-		tmp = ft_lstnew(gsc);
-		ft_lstadd_back(&colors, tmp);
-		gsc += 0x00080808;
+		gsc += augment;
+		gsc += augment << 8;
+		gsc += augment << 16;
+		colors[i] = gsc;
+		i++;
 	}
-	return (&colors);
+	colors[i++] = 0x00FFFFFF;
+	vars->fd->color_count = vars->fd->iters;
+	return (colors);
 }
 
 unsigned int choose_color(unsigned int i,  t_vars *vars)
 {
-	if (i == vars->fd->iters)
-		return (vars->fd->colors)
+	if (vars->fd->iters == vars->fd->color_count)
+	{
+		return (vars->fd->colors[i]);
+	}
+	return (0);
 }
