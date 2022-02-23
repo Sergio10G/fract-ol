@@ -41,6 +41,8 @@ RESET		=	\033[1;0m
 
 $(NAME)			:	$(OBJS)
 					echo "$(BLUE)Compiling...$(RESET)"
+					make -C libft/ --silent
+					echo "$(PINK)libft compiled!$(RESET)"
 					make -C minilibx/ --silent
 					echo "$(PINK)minilibX compiled!$(RESET)"
 					$(CC) $(OBJS) libft/libft.a minilibx/libmlx.a minilibx/libmlx_Linux.a -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
@@ -51,10 +53,14 @@ all			:	$(NAME)
 clean			:
 					rm -f $(OBJS)
 					echo "$(BLUE)fract-ol objs cleaned!$(RESET)"
+					make -C libft/ clean --silent
+					echo "$(BLUE)libft objs cleaned!$(RESET)"
 
 fclean			:	clean
+					make -C libft/ fclean --silent
+					echo "$(BLUE)libft cleaned!$(RESET)"
 					make -C minilibx/ clean --silent
-					echo "$(BLUE)minilibX objs cleaned!$(RESET)"
+					echo "$(BLUE)minilibX cleaned!$(RESET)"
 					rm -f $(NAME)
 					echo "$(BLUE)fract-ol removed!$(RESET)"
 
