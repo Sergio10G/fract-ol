@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:40:09 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/17 17:30:44 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/22 19:07:18 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	check_params(int argc, char **argv)
 
 void	check_julia_params(char *params_cli)
 {
-	//TODO: this
+	(void) params_cli;
+	printf("Work in progress :D\n");
 }
 
 void	free_mat(char **str)

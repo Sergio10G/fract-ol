@@ -12,10 +12,14 @@
 
 NAME			=	fractol
 
-SRCS			=	src/main.c			\
-					src/algorithm.c		\
-					src/complex_funcs.c	\
-					src/metadata_funcs.c
+SRCS			=	src/algorithm.c			\
+					src/errors.c		\
+					src/img_funcs.c	\
+					src/input_parse.c	\
+					src/utils.c	\
+					src/color_funcs.c	\
+					src/init_structs.c	\
+					src/fractol.c	
 
 OBJS			=	$(SRCS:.c=.o)
 
@@ -39,8 +43,10 @@ $(NAME)			:	$(OBJS)
 					echo "$(BLUE)Compiling...$(RESET)"
 					make -C minilibx/ --silent
 					echo "$(PINK)minilibX compiled!$(RESET)"
-					$(CC) $(OBJS) minilibx/libmlx.a minilibx/libmlx_Linux.a -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+					$(CC) $(OBJS) libft/libft.a minilibx/libmlx.a minilibx/libmlx_Linux.a -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 					echo "$(GREEN)fract-ol compiled!$(RESET)"
+
+all			:	$(NAME)
 
 clean			:
 					rm -f $(OBJS)

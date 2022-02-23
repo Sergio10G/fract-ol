@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:07:05 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/18 19:03:59 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/22 19:29:09 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	t_vars			*vars;
 	t_fractaldata	*fd;
-	t_imgdata		*id;
 
 	if (argc < 2 || argc > 3)
 		err_print_options(1);
@@ -30,31 +29,66 @@ int	main(int argc, char **argv)
 		free(fd);
 		err_print_options(12);
 	}
-	assign_fractal_func(argv[1], fd);
-	assign_fractal_colors(0, fd);
+	vars->fd = fd;
+	vars->id = init_imgdata(vars);
+	if (!(vars->id))
+	{
+		free_all(vars);
+		err_print_options(1);
+	}
+	stage_2(argv, vars);
+}
+
+void	stage_2(char **argv, t_vars *vars)
+{
+	assign_fractal_func(argv[1], vars);
+	assign_fractal_colors(0, vars);
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, vars->width, vars->height, "fract-ol");
-	// print image
+	vars->fd->paint_fractal(vars);
 	mlx_loop(vars->mlx);
 }
 
-void	assign_fractal_func(char *fractal_name, t_fractaldata *fd)
+void	assign_fractal_func(char *fractal_name, t_vars *vars)
 {
 	if (ft_strncmp(fractal_name, "mandelbrot", 11) == 0)
-		fd->fractal = &mandelbrot;
+		vars->fd->paint_fractal = &paint_mandelbrot;
 	else if (ft_strncmp(fractal_name, "julia", 6) == 0)
-		fd->fractal = &julia;
+		printf("Work in progress :D\n");
+		//vars->fd->paint_fractal = &julia;
 	else if (ft_strncmp(fractal_name, "bship", 6) == 0)
-		fd->fractal = &burning_ship;
+		vars->fd->paint_fractal = &paint_bship;
+	else
+	{
+		free_all(vars);
+		err_print_options(1);
+	}
 }
 
-void	assign_fractal_colors(int index, t_fractaldata *fd)
+void	assign_fractal_colors(int index, t_vars *vars)
 {
-	fd->colors = init_colorscheme_1();
-	fd->color_count = ft_lstsize(*(fd->colors));
+	if (index == 0)
+		vars->fd->colors = init_colorscheme_1(vars);
 }
 
-void	init_img()
+void	free_all(t_vars *vars)
 {
-
+	if (!vars)
+		return ;
+	if (vars->id)
+	{
+		if (vars->id->img)
+			mlx_destroy_image(vars->mlx, vars->id->img);
+		if (vars->id->addr)
+			free(vars->id->addr);
+		free(vars->id);
+	}
+	if (vars->fd)
+	{
+		if (vars->fd->colors)
+			free(vars->fd->colors);
+		free(vars->fd);
+	}
+	mlx_destroy_window(vars->mlx, vars->win);
+	free(vars);
 }
