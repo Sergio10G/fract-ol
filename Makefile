@@ -6,7 +6,7 @@
 #    By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 17:51:37 by sdiez-ga          #+#    #+#              #
-#    Updated: 2022/02/22 19:10:18 by sdiez-ga         ###   ########.fr        #
+#    Updated: 2022/02/25 17:58:14 by sdiez-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,10 @@ SRCS			=	src/fractol.c					\
 					src/img_funcs.c					\
 					src/input_parse.c				\
 					src/color_funcs.c				\
+					src/color_funcs2.c				\
 					src/init_structs.c				\
 					src/utils.c						\
+					src/key_funcs.c					\
 					src/algorithm.c
 
 OBJS			=	$(SRCS:.c=.o)
@@ -41,18 +43,24 @@ RESET		=	\033[1;0m
 
 $(NAME)			:	$(OBJS)
 					echo "$(BLUE)Compiling...$(RESET)"
+					make -C libft/ --silent
+					echo "$(PINK)libft compiled!$(RESET)"
 					make -C minilibx/ --silent
 					echo "$(PINK)minilibX compiled!$(RESET)"
-					$(CC) $(OBJS) $(MLXFLAGS) libft/libft.a -o $(NAME)
+					$(CC) $(OBJS) $(MLXFLAGS) libft/libft.a -o $(NAME) -O3
 					echo "$(GREEN)fract-ol compiled!$(RESET)"
 
 all				:	$(NAME)
 
 clean			:
+					make -C libft/ clean --silent
+					echo "$(BLUE)libft objs cleaned!$(RESET)"
 					rm -f $(OBJS)
 					echo "$(BLUE)fract-ol objs cleaned!$(RESET)"
 
 fclean			:	clean
+					make -C libft/ fclean --silent
+					echo "$(BLUE)libft removed!$(RESET)"
 					make -C minilibx/ clean --silent
 					echo "$(BLUE)minilibX objs cleaned!$(RESET)"
 					rm -f $(NAME)

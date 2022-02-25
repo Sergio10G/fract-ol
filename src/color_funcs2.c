@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_funcs.c                                      :+:      :+:    :+:   */
+/*   color_funcs2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 18:56:41 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/25 17:54:57 by sdiez-ga         ###   ########.fr       */
+/*   Created: 2022/02/25 17:55:03 by sdiez-ga          #+#    #+#             */
+/*   Updated: 2022/02/25 18:00:37 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-unsigned int choose_color(unsigned int i,  t_vars *vars)
-{
-	if (vars->fd->iters == vars->fd->color_count)
-	{
-		return (vars->fd->colors[i]);
-	}
-	return (0);
-}
-
-int	*init_colorscheme_1(t_vars *vars)
+int	*init_colorscheme_5(t_vars *vars)
 {
 	int				*colors;
 	unsigned int	gsc;
@@ -39,32 +30,6 @@ int	*init_colorscheme_1(t_vars *vars)
 	{
 		gsc += augment;
 		gsc += augment << 8;
-		gsc += augment << 16;
-		colors[i] = gsc;
-		i++;
-	}
-	colors[i++] = 0x00FFFFFF;
-	vars->fd->color_count = vars->fd->iters;
-	return (colors);
-}
-
-int	*init_colorscheme_2(t_vars *vars)
-{
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
-
-	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
-	if (!colors)
-		return (0);
-	gsc = 0x00000000;
-	colors[0] = gsc;
-	augment = 256 / vars->fd->iters;
-	i = 1;
-	while (i < vars->fd->iters)
-	{
-		gsc += augment << 16;
 		colors[i] = gsc;
 		i++;
 	}
@@ -73,7 +38,7 @@ int	*init_colorscheme_2(t_vars *vars)
 	return (colors);
 }
 
-int	*init_colorscheme_3(t_vars *vars)
+int	*init_colorscheme_6(t_vars *vars)
 {
 	int				*colors;
 	unsigned int	gsc;
@@ -90,6 +55,7 @@ int	*init_colorscheme_3(t_vars *vars)
 	while (i < vars->fd->iters)
 	{
 		gsc += augment << 8;
+		gsc += augment << 16;
 		colors[i] = gsc;
 		i++;
 	}
@@ -98,7 +64,7 @@ int	*init_colorscheme_3(t_vars *vars)
 	return (colors);
 }
 
-int	*init_colorscheme_4(t_vars *vars)
+int	*init_colorscheme_7(t_vars *vars)
 {
 	int				*colors;
 	unsigned int	gsc;
@@ -115,6 +81,7 @@ int	*init_colorscheme_4(t_vars *vars)
 	while (i < vars->fd->iters)
 	{
 		gsc += augment;
+		gsc += augment << 16;
 		colors[i] = gsc;
 		i++;
 	}
@@ -122,4 +89,3 @@ int	*init_colorscheme_4(t_vars *vars)
 	vars->fd->color_count = vars->fd->iters;
 	return (colors);
 }
-

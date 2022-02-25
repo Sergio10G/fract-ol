@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:39:57 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/22 19:28:54 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/25 18:46:31 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <string.h>
 
 //	Macros
-# define DEF_WIDTH 1920
-# define DEF_HEIGHT 1080
+# define DEF_WIDTH 360
+# define DEF_HEIGHT 180
 
 // Structs
 
@@ -80,12 +80,19 @@ void	paint_julia(void *param);
 void	paint_bship(void *param);
 
 /* color_funcs.c functions */
-int				*init_colorscheme_1(t_vars *vars);
 unsigned int	choose_color(unsigned int i, t_vars *vars);
+int				*init_colorscheme_1(t_vars *vars);
+int				*init_colorscheme_2(t_vars *vars);
+int				*init_colorscheme_3(t_vars *vars);
+int				*init_colorscheme_4(t_vars *vars);
+int				*init_colorscheme_5(t_vars *vars);
+int				*init_colorscheme_6(t_vars *vars);
+int				*init_colorscheme_7(t_vars *vars);
 
 /* key_funcs.c functions */
-int	key_hook(int keycode, void *param);
-int	mouse_hook(int button, int x, int y, void *param);
+int		key_hook(int keycode, void *param);
+int		mouse_hook(int button, int x, int y, void *param);
+void	change_colors(int keycode, t_vars *vars);
 
 /* input_parse.c functions */
 void	check_params(int argc, char **argv);
@@ -103,6 +110,7 @@ t_imgdata		*init_imgdata(t_vars *vars);
 
 /* algorithm.c functions */
 unsigned int	mandelbrot(t_complex z, t_complex c, unsigned int iters, unsigned int i);
+unsigned int	mandelbrot_iter(t_complex z, t_complex c, unsigned int iters, unsigned int i);
 unsigned int	julia(t_complex z, t_complex c, unsigned int iters, unsigned int i);
 unsigned int	burning_ship(t_complex z, t_complex c, unsigned int iters, unsigned int i);
 

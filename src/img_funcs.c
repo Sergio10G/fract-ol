@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:22:42 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/22 19:53:24 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/25 18:47:01 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ void	paint_mandelbrot(void *param)
 			z->im = (double)(i * 3.0) / vars->height / vars->scale;
 			z->re -= (double)(vars->offset_x) / vars->scale;
 			z->im -= (double)(vars->offset_y) / vars->scale;
-			color = choose_color(mandelbrot(*z, *z, vars->fd->iters, 0), vars);
-			if (z->re == 0 && z->im == 0)
-				printf("Color: %u\n", color);
+			color = choose_color(mandelbrot_iter(*z, *z, vars->fd->iters, 0), vars);
 			img_pixel_put(vars->id, j, i, color);
 			j++;
 		}
