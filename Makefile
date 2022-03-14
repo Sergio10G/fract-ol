@@ -12,14 +12,16 @@
 
 NAME			=	fractol
 
-SRCS			=	src/algorithm.c			\
-					src/errors.c		\
-					src/img_funcs.c	\
-					src/input_parse.c	\
-					src/utils.c	\
-					src/color_funcs.c	\
-					src/init_structs.c	\
-					src/fractol.c	
+SRCS			=	src/fractol.c					\
+					src/errors.c					\
+					src/img_funcs.c					\
+					src/input_parse.c				\
+					src/color_funcs.c				\
+					src/color_funcs2.c				\
+					src/init_structs.c				\
+					src/utils.c						\
+					src/key_funcs.c					\
+					src/algorithm.c
 
 OBJS			=	$(SRCS:.c=.o)
 
