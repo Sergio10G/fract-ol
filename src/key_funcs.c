@@ -21,7 +21,7 @@ int	key_hook(int keycode, void *param)
 	// Right: 124
 	// Esc: 53
 	vars = (t_vars *)param;
-	printf("keycode: %d\n", keycode);
+	//printf("keycode: %d\n", keycode);
 	change_colors(keycode, vars);
 	if (keycode == 65307)
 	{
