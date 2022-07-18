@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:39:57 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/25 18:46:31 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/18 19:53:38 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 # include <string.h>
 
 //	Macros
-# define DEF_WIDTH 360
-# define DEF_HEIGHT 180
+# define DEF_WIDTH 1024
+# define DEF_HEIGHT 576
+# define UINT unsigned int
 
 // Structs
 
@@ -46,7 +47,7 @@ typedef struct	s_complex
 
 typedef struct	s_fractaldata
 {
-	void			(*paint_fractal)(void *);
+	unsigned int	(*fractal_func)(t_complex, t_complex, unsigned int, unsigned int);
 	unsigned int	iters;
 	int				*colors;
 	unsigned int	color_count;
@@ -73,11 +74,13 @@ void	assign_fractal_func(char *fractal_name, t_vars *vars);
 void	assign_fractal_colors(int index, t_vars *vars);
 void	free_all(t_vars *vars);
 
+/* transform_funcs.c functions */
+t_complex *transform_coordinates(t_complex *coords, t_vars *vars);
+t_complex apply_transform(t_complex coords, t_vars *vars);
+
 /* img_funcs.c functions */
 void	img_pixel_put(t_imgdata *data, int x, int y, unsigned int color);
-void	paint_mandelbrot(void *param);
-void	paint_julia(void *param);
-void	paint_bship(void *param);
+void	paint_fractal(t_vars *vars);
 
 /* color_funcs.c functions */
 unsigned int	choose_color(unsigned int i, t_vars *vars);
@@ -90,8 +93,8 @@ int				*init_colorscheme_6(t_vars *vars);
 int				*init_colorscheme_7(t_vars *vars);
 
 /* key_funcs.c functions */
-int		key_hook(int keycode, void *param);
-int		mouse_hook(int button, int x, int y, void *param);
+int		key_hook(int keycode, t_vars *vars);
+int		mouse_hook(int button, int x, int y, t_vars *vars);
 void	change_colors(int keycode, t_vars *vars);
 
 /* input_parse.c functions */
@@ -110,7 +113,6 @@ t_imgdata		*init_imgdata(t_vars *vars);
 
 /* algorithm.c functions */
 unsigned int	mandelbrot(t_complex z, t_complex c, unsigned int iters, unsigned int i);
-unsigned int	mandelbrot_iter(t_complex z, t_complex c, unsigned int iters, unsigned int i);
 unsigned int	julia(t_complex z, t_complex c, unsigned int iters, unsigned int i);
 unsigned int	burning_ship(t_complex z, t_complex c, unsigned int iters, unsigned int i);
 

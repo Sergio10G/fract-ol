@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:07:05 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/25 18:06:27 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:48:37 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ void	stage_2(char **argv, t_vars *vars)
 	vars->win = mlx_new_window(vars->mlx, vars->width, vars->height, "fract-ol");
 	mlx_key_hook(vars->win, key_hook, vars);
 	mlx_mouse_hook(vars->win, mouse_hook, vars);
-	vars->fd->paint_fractal(vars);
+	paint_fractal(vars);
 	mlx_loop(vars->mlx);
 }
 
 void	assign_fractal_func(char *fractal_name, t_vars *vars)
 {
 	if (ft_strncmp(fractal_name, "mandelbrot", 11) == 0)
-		vars->fd->paint_fractal = &paint_mandelbrot;
+		vars->fd->fractal_func = &mandelbrot;
 	else if (ft_strncmp(fractal_name, "julia", 6) == 0)
 		printf("Work in progress :D\n");
-		//vars->fd->paint_fractal = &julia;
+		//vars->fd->fractal_func = &julia;
 	else if (ft_strncmp(fractal_name, "bship", 6) == 0)
-		vars->fd->paint_fractal = &paint_bship;
+		vars->fd->fractal_func = &burning_ship;
 	else
 	{
 		free_all(vars);
