@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:39:57 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/18 19:53:38 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:12:46 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 //	Macros
 # define DEF_WIDTH 1024
 # define DEF_HEIGHT 576
+# define ITERS 50
 # define UINT unsigned int
 
 // Structs
@@ -62,6 +63,7 @@ typedef struct	s_vars
 	double			scale;
 	double			offset_x;
 	double			offset_y;
+	t_complex		*julia_c;
 	t_imgdata		*id;
 	t_fractaldata	*fd;
 }				t_vars;
@@ -69,8 +71,8 @@ typedef struct	s_vars
 
 /* fractol.c functions */
 void	print_image(t_vars *vars);
-void	stage_2(char **argv, t_vars *vars);
-void	assign_fractal_func(char *fractal_name, t_vars *vars);
+void	stage_2(char **argv, t_vars *vars, t_complex *julia_c);
+void	assign_fractal_func(char *fractal_name, t_vars *vars, t_complex* julia_c);
 void	assign_fractal_colors(int index, t_vars *vars);
 void	free_all(t_vars *vars);
 
@@ -91,6 +93,7 @@ int				*init_colorscheme_4(t_vars *vars);
 int				*init_colorscheme_5(t_vars *vars);
 int				*init_colorscheme_6(t_vars *vars);
 int				*init_colorscheme_7(t_vars *vars);
+int				*init_colorscheme_8(t_vars *vars);
 
 /* key_funcs.c functions */
 int		key_hook(int keycode, t_vars *vars);
@@ -98,12 +101,14 @@ int		mouse_hook(int button, int x, int y, t_vars *vars);
 void	change_colors(int keycode, t_vars *vars);
 
 /* input_parse.c functions */
-void	check_params(int argc, char **argv);
-void	check_julia_params(char *params_cli);
+void	check_params(int argc, char **argv, t_complex *julia_c);
+void	check_julia_params(int argc, char **argv, t_complex *julia_c);
+int		check_julia_nums(char **julia_nums);
 void	free_mat(char **str);
 
 /* utils.c functions */
 void	ft_strtoupper(char *str);
+double  ft_fourdec_atod(char *num);
 
 /* init_structs.c functions */
 t_vars			*init_vars();

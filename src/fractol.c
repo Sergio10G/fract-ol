@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:07:05 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/18 17:48:37 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:11:21 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ int	main(int argc, char **argv)
 {
 	t_vars			*vars;
 	t_fractaldata	*fd;
+	t_complex		*julia_c;
 
-	if (argc < 2 || argc > 3)
+	if (argc < 2)
 		err_print_options(1);
-	check_params(argc, argv);
+	julia_c = init_complex();
+	if (!julia_c)
+		exit(1);
+	check_params(argc, argv, julia_c);
 	fd = init_fractaldata();
 	if (!fd)
 		err_print_options(12);
@@ -36,12 +40,12 @@ int	main(int argc, char **argv)
 		free_all(vars);
 		err_print_options(1);
 	}
-	stage_2(argv, vars);
+	stage_2(argv, vars, julia_c);
 }
 
-void	stage_2(char **argv, t_vars *vars)
+void	stage_2(char **argv, t_vars *vars, t_complex *julia_c)
 {
-	assign_fractal_func(argv[1], vars);
+	assign_fractal_func(argv[1], vars, julia_c);
 	assign_fractal_colors(0, vars);
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, vars->width, vars->height, "fract-ol");
@@ -51,13 +55,13 @@ void	stage_2(char **argv, t_vars *vars)
 	mlx_loop(vars->mlx);
 }
 
-void	assign_fractal_func(char *fractal_name, t_vars *vars)
+void	assign_fractal_func(char *fractal_name, t_vars *vars, t_complex *julia_c)
 {
+	vars->julia_c = julia_c;
 	if (ft_strncmp(fractal_name, "mandelbrot", 11) == 0)
 		vars->fd->fractal_func = &mandelbrot;
 	else if (ft_strncmp(fractal_name, "julia", 6) == 0)
-		printf("Work in progress :D\n");
-		//vars->fd->fractal_func = &julia;
+		vars->fd->fractal_func = &julia;
 	else if (ft_strncmp(fractal_name, "bship", 6) == 0)
 		vars->fd->fractal_func = &burning_ship;
 	else
@@ -83,6 +87,8 @@ void	assign_fractal_colors(int index, t_vars *vars)
 		vars->fd->colors = init_colorscheme_6(vars);
 	else if (index == 6)
 		vars->fd->colors = init_colorscheme_7(vars);
+	else if (index == 7)
+		vars->fd->colors = init_colorscheme_8(vars);
 	else
 		vars->fd->colors = init_colorscheme_1(vars);
 	vars->fd->color_count = vars->fd->iters;
@@ -92,6 +98,8 @@ void	free_all(t_vars *vars)
 {
 	if (!vars)
 		return ;
+	if (vars->julia_c)
+		free(vars->julia_c);
 	if (vars->id)
 	{
 		if (vars->id->img)

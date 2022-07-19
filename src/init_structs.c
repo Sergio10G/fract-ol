@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:00:26 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/18 19:53:55 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:39:01 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_fractaldata	*init_fractaldata()
 	fd = ft_calloc(1, sizeof(t_fractaldata));
 	if (!fd)
 		return (0);
-	fd->iters = 30;
+	fd->iters = ITERS;
 	return (fd);
 }
 

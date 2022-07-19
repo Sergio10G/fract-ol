@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:42:46 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/18 19:54:17 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:18:29 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	change_colors(int keycode, t_vars *vars)
 		assign_fractal_colors(5, vars);
 	else if (keycode == 26)
 		assign_fractal_colors(6, vars);
+	else if (keycode == 28)
+		assign_fractal_colors(7, vars);
 	else
 		return ;
 	paint_fractal(vars);

@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 15:33:46 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/18 17:47:14 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:25:41 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ unsigned int	julia(t_complex z, t_complex c, unsigned int iters, unsigned int i)
 	{
 		z.re = x_sq - y_sq + c.re;
 		z.im = 2 * x * y + c.im;
-		return (mandelbrot(z, c, iters, ++i));
+		return (julia(z, c, iters, ++i));
 	}
 }
 

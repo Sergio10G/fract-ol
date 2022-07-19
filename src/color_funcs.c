@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:56:41 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/25 17:54:57 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:13:00 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 unsigned int choose_color(unsigned int i,  t_vars *vars)
 {
 	if (vars->fd->iters == vars->fd->color_count)
-	{
 		return (vars->fd->colors[i]);
-	}
+	else
+		return(vars->fd->colors[i % vars->fd->color_count]);
 	return (0);
 }
 

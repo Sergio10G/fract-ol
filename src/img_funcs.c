@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:22:42 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/18 17:56:18 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:05:08 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	paint_fractal(t_vars *vars)
 			z->re = j;
 			z->im = i;
 			z = transform_coordinates(z, vars);
-			color = choose_color(vars->fd->fractal_func(*z, *z, vars->fd->iters, 0), vars);
+			if (vars->fd->fractal_func == &julia)
+				color = choose_color(vars->fd->fractal_func(*z, *vars->julia_c, vars->fd->iters, 0), vars);
+			else
+				color = choose_color(vars->fd->fractal_func(*z, *z, vars->fd->iters, 0), vars);
 			img_pixel_put(vars->id, j, i, color);
 			j++;
 		}
