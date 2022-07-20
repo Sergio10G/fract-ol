@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:07:05 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/19 20:11:21 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:34:18 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,36 +34,43 @@ int	main(int argc, char **argv)
 		err_print_options(12);
 	}
 	vars->fd = fd;
+	stage_2(argv, vars, julia_c);
+}
+
+void	stage_2(char **argv, t_vars *vars, t_complex *julia_c)
+{
 	vars->id = init_imgdata(vars);
 	if (!(vars->id))
 	{
 		free_all(vars);
 		err_print_options(1);
 	}
-	stage_2(argv, vars, julia_c);
-}
-
-void	stage_2(char **argv, t_vars *vars, t_complex *julia_c)
-{
 	assign_fractal_func(argv[1], vars, julia_c);
 	assign_fractal_colors(0, vars);
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, vars->width, vars->height, "fract-ol");
+	vars->win = \
+		mlx_new_window(vars->mlx, vars->width, vars->height, "fract-ol");
 	mlx_key_hook(vars->win, key_hook, vars);
 	mlx_mouse_hook(vars->win, mouse_hook, vars);
 	paint_fractal(vars);
 	mlx_loop(vars->mlx);
 }
 
-void	assign_fractal_func(char *fractal_name, t_vars *vars, t_complex *julia_c)
+void	assign_fractal_func(char *frctl_name, t_vars *vars, t_complex *julia_c)
 {
 	vars->julia_c = julia_c;
-	if (ft_strncmp(fractal_name, "mandelbrot", 11) == 0)
+	if (ft_strncmp(frctl_name, "mandelbrot", 11) == 0)
 		vars->fd->fractal_func = &mandelbrot;
-	else if (ft_strncmp(fractal_name, "julia", 6) == 0)
+	else if (ft_strncmp(frctl_name, "julia", 6) == 0)
+	{
 		vars->fd->fractal_func = &julia;
-	else if (ft_strncmp(fractal_name, "bship", 6) == 0)
+		vars->offset_x -= 0.5;
+	}
+	else if (ft_strncmp(frctl_name, "bship", 6) == 0)
+	{
 		vars->fd->fractal_func = &burning_ship;
+		vars->offset_y += 0.4;
+	}
 	else
 	{
 		free_all(vars);

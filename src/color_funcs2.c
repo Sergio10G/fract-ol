@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:55:03 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/19 20:21:30 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:21:48 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int	*init_colorscheme_8(t_vars *vars)
 	colors[7] = 0X004B7618;
 	colors[8] = 0X00CDCE34;
 	colors[9] = 0X002D7C8C;
-
 	vars->fd->color_count = 10;
 	return (colors);
 }

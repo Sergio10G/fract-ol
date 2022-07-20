@@ -6,13 +6,13 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 15:33:46 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/19 16:25:41 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:39:09 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-unsigned int	mandelbrot(t_complex z, t_complex c, unsigned int iters, unsigned int i)
+UINT	mandelbrot(t_complex z, t_complex c, UINT iters, UINT i)
 {
 	double	x;
 	double	y;
@@ -35,7 +35,7 @@ unsigned int	mandelbrot(t_complex z, t_complex c, unsigned int iters, unsigned i
 	}
 }
 
-unsigned int	julia(t_complex z, t_complex c, unsigned int iters, unsigned int i)
+UINT	julia(t_complex z, t_complex c, UINT iters, UINT i)
 {
 	double	x;
 	double	y;
@@ -58,7 +58,7 @@ unsigned int	julia(t_complex z, t_complex c, unsigned int iters, unsigned int i)
 	}
 }
 
-unsigned int	burning_ship(t_complex z, t_complex c, unsigned int iters, unsigned int i)
+UINT	burning_ship(t_complex z, t_complex c, UINT iters, UINT i)
 {
 	double	x;
 	double	y;

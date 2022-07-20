@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:40:09 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/19 19:31:09 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:11:33 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,33 @@ void	check_params(int argc, char **argv, t_complex *julia_c)
 
 void	check_julia_params(int argc, char **argv, t_complex *julia_c)
 {
-	char	**numStrs;
+	char	**num_strs;
 	int		i;
-	int 	nums_ok;
+	int		nums_ok;
 
 	if (argc == 3)
 	{
-		numStrs = ft_split(argv[2], ' ');
+		num_strs = ft_split(argv[2], ' ');
 		i = 0;
-		while (numStrs[i])
+		while (num_strs[i])
 			i++;
 		if (i != 2)
 			err_print_options(22);
 	}
 	else
 	{
-		numStrs = ft_calloc(3, sizeof(char *));
-		numStrs[0] = ft_strdup(argv[2]);
-		numStrs[1] = ft_strdup(argv[3]);
-		numStrs[2] = 0;
+		num_strs = ft_calloc(3, sizeof(char *));
+		num_strs[0] = ft_strdup(argv[2]);
+		num_strs[1] = ft_strdup(argv[3]);
+		num_strs[2] = 0;
 	}
-	nums_ok = check_julia_nums(numStrs);
+	nums_ok = check_julia_nums(num_strs);
 	if (nums_ok)
 	{
-		printf("strs: %s, %s\n", numStrs[0], numStrs[1]);
-		julia_c->re = ft_fourdec_atod(numStrs[0]);
-		julia_c->im = ft_fourdec_atod(numStrs[1]);
-		printf("julia_c: %g, %g\n", julia_c->re, julia_c->im);
+		julia_c->re = ft_atod(num_strs[0]);
+		julia_c->im = ft_atod(num_strs[1]);
 	}
-	free_mat(numStrs);
+	free_mat(num_strs);
 	if (!nums_ok)
 		err_print_options(22);
 }
@@ -70,7 +68,7 @@ int	check_julia_nums(char **julia_nums)
 {
 	int	i;
 	int	j;
-	int dot_index;
+	int	dot_index;
 	int	dot_count;
 
 	i = 0;

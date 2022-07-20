@@ -6,20 +6,20 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:42:46 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/19 20:18:29 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:31:57 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
+// Keyboard keycodes
+// Up: 126
+// Down: 125
+// Left: 123
+// Right: 124
+// Esc: 53
 int	key_hook(int keycode, t_vars *vars)
 {
-	// Up: 126
-	// Down: 125
-	// Left: 123
-	// Right: 124
-	// Esc: 53
-	//printf("keycode: %d\n", keycode);
 	change_colors(keycode, vars);
 	if (keycode == 53)
 	{
@@ -40,10 +40,11 @@ int	key_hook(int keycode, t_vars *vars)
 	return (0);
 }
 
+// Mouse keycodes
+// ScrollUp: 4
+// ScrollDown: 5
 int	mouse_hook(int button, int x, int y, t_vars *vars)
 {
-	// ScrollUp: 4
-	// ScrollDown: 5
 	(void) x;
 	(void) y;
 	if (button == 4)

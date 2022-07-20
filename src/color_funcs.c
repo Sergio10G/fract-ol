@@ -6,18 +6,18 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:56:41 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/19 20:13:00 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:21:26 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-unsigned int choose_color(unsigned int i,  t_vars *vars)
+unsigned int	choose_color(unsigned int i, t_vars *vars)
 {
 	if (vars->fd->iters == vars->fd->color_count)
 		return (vars->fd->colors[i]);
 	else
-		return(vars->fd->colors[i % vars->fd->color_count]);
+		return (vars->fd->colors[i % vars->fd->color_count]);
 	return (0);
 }
 
@@ -122,4 +122,3 @@ int	*init_colorscheme_4(t_vars *vars)
 	vars->fd->color_count = vars->fd->iters;
 	return (colors);
 }
-
