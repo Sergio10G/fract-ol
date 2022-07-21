@@ -6,7 +6,7 @@
 #    By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 17:51:37 by sdiez-ga          #+#    #+#              #
-#    Updated: 2022/02/12 00:40:44 by sdiez-ga         ###   ########.fr        #
+#    Updated: 2022/07/21 15:15:46 by sergiodg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS			=	src/fractol.c					\
 					src/init_structs.c				\
 					src/utils.c						\
 					src/key_funcs.c					\
+					src/transform_funcs.c			\
 					src/algorithm.c
 
 OBJS			=	$(SRCS:.c=.o)

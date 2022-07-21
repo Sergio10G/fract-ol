@@ -6,13 +6,13 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:00:26 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/25 18:45:09 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:23:47 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-t_vars	*init_vars()
+t_vars	*init_vars(void)
 {
 	t_vars	*vars;
 
@@ -28,7 +28,7 @@ t_vars	*init_vars()
 	return (vars);
 }
 
-t_complex	*init_complex()
+t_complex	*init_complex(void)
 {
 	t_complex	*comp;
 
@@ -40,14 +40,14 @@ t_complex	*init_complex()
 	return (comp);
 }
 
-t_fractaldata	*init_fractaldata()
+t_fractaldata	*init_fractaldata(void)
 {
 	t_fractaldata	*fd;
 
 	fd = ft_calloc(1, sizeof(t_fractaldata));
 	if (!fd)
 		return (0);
-	fd->iters = 30;
+	fd->iters = ITERS;
 	return (fd);
 }
 
@@ -60,6 +60,6 @@ t_imgdata	*init_imgdata(t_vars *vars)
 		return (0);
 	id->img = mlx_new_image(vars->mlx, vars->width, vars->height);
 	id->addr = mlx_get_data_addr(id->img, &(id->bits_per_pixel), \
-		   &(id->line_length), &(id->endian));
+		&(id->line_length), &(id->endian));
 	return (id);
 }
