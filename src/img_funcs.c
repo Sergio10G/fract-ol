@@ -6,18 +6,18 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:22:42 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/20 18:03:41 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:28:28 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	img_pixel_put(t_imgdata *data, int x, int y, UINT color)
+void	img_pixel_put(t_imgdata *data, int x, int y, size_t color)
 {
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(UINT *)dst = color;
+	*(size_t *)dst = color;
 }
 
 void	paint_fractal(t_vars *vars)

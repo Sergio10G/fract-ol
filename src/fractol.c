@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:07:05 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/20 18:34:18 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:01:48 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@ int	main(int argc, char **argv)
 {
 	t_vars			*vars;
 	t_fractaldata	*fd;
-	t_complex		*julia_c;
+	t_complex		julia_c;
 
 	if (argc < 2)
 		err_print_options(1);
-	julia_c = init_complex();
-	if (!julia_c)
-		exit(1);
-	check_params(argc, argv, julia_c);
+	julia_c.re = 0;
+	julia_c.im = 0;
+	check_params(argc, argv, &julia_c);
 	fd = init_fractaldata();
 	if (!fd)
 		err_print_options(12);
@@ -37,7 +36,7 @@ int	main(int argc, char **argv)
 	stage_2(argv, vars, julia_c);
 }
 
-void	stage_2(char **argv, t_vars *vars, t_complex *julia_c)
+void	stage_2(char **argv, t_vars *vars, t_complex julia_c)
 {
 	vars->id = init_imgdata(vars);
 	if (!(vars->id))
@@ -56,9 +55,10 @@ void	stage_2(char **argv, t_vars *vars, t_complex *julia_c)
 	mlx_loop(vars->mlx);
 }
 
-void	assign_fractal_func(char *frctl_name, t_vars *vars, t_complex *julia_c)
+void	assign_fractal_func(char *frctl_name, t_vars *vars, t_complex julia_c)
 {
-	vars->julia_c = julia_c;
+	vars->julia_c->re = julia_c.re;
+	vars->julia_c->im = julia_c.im;
 	if (ft_strncmp(frctl_name, "mandelbrot", 11) == 0)
 		vars->fd->fractal_func = &mandelbrot;
 	else if (ft_strncmp(frctl_name, "julia", 6) == 0)

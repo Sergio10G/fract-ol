@@ -6,13 +6,13 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:56:41 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/20 17:21:26 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:04:23 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-unsigned int	choose_color(unsigned int i, t_vars *vars)
+size_t	choose_color(size_t i, t_vars *vars)
 {
 	if (vars->fd->iters == vars->fd->color_count)
 		return (vars->fd->colors[i]);
@@ -23,10 +23,10 @@ unsigned int	choose_color(unsigned int i, t_vars *vars)
 
 int	*init_colorscheme_1(t_vars *vars)
 {
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
+	int		*colors;
+	size_t	gsc;
+	size_t	augment;
+	size_t	i;
 
 	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
 	if (!colors)
@@ -50,10 +50,10 @@ int	*init_colorscheme_1(t_vars *vars)
 
 int	*init_colorscheme_2(t_vars *vars)
 {
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
+	int		*colors;
+	size_t	gsc;
+	size_t	augment;
+	size_t	i;
 
 	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
 	if (!colors)
@@ -75,10 +75,10 @@ int	*init_colorscheme_2(t_vars *vars)
 
 int	*init_colorscheme_3(t_vars *vars)
 {
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
+	int		*colors;
+	size_t	gsc;
+	size_t	augment;
+	size_t	i;
 
 	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
 	if (!colors)
@@ -100,10 +100,10 @@ int	*init_colorscheme_3(t_vars *vars)
 
 int	*init_colorscheme_4(t_vars *vars)
 {
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
+	int		*colors;
+	size_t	gsc;
+	size_t	augment;
+	size_t	i;
 
 	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
 	if (!colors)

@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:55:03 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/20 17:21:48 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:04:48 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	*init_colorscheme_5(t_vars *vars)
 {
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
+	int		*colors;
+	size_t	gsc;
+	size_t	augment;
+	size_t	i;
 
 	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
 	if (!colors)
@@ -40,10 +40,10 @@ int	*init_colorscheme_5(t_vars *vars)
 
 int	*init_colorscheme_6(t_vars *vars)
 {
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
+	int		*colors;
+	size_t	gsc;
+	size_t	augment;
+	size_t	i;
 
 	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
 	if (!colors)
@@ -66,10 +66,10 @@ int	*init_colorscheme_6(t_vars *vars)
 
 int	*init_colorscheme_7(t_vars *vars)
 {
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
+	int		*colors;
+	size_t	gsc;
+	size_t	augment;
+	size_t	i;
 
 	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
 	if (!colors)
@@ -92,7 +92,7 @@ int	*init_colorscheme_7(t_vars *vars)
 
 int	*init_colorscheme_8(t_vars *vars)
 {
-	int				*colors;
+	int	*colors;
 
 	colors = ft_calloc(10, sizeof(int));
 	if (!colors)
