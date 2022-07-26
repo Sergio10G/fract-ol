@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:22:42 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/25 19:28:28 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:11:56 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	transform_z_assign_c(t_complex *z, t_complex **c, t_vars *vars)
 {
 	z = transform_coordinates(z, vars);
 	if (vars->fd->fractal_func == &julia)
-		*c = vars->julia_c;
+		*c = &vars->julia_c;
 	else
 		*c = z;
 }

@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:07:05 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/26 17:01:48 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:15:03 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void	stage_2(char **argv, t_vars *vars, t_complex julia_c)
 
 void	assign_fractal_func(char *frctl_name, t_vars *vars, t_complex julia_c)
 {
-	vars->julia_c->re = julia_c.re;
-	vars->julia_c->im = julia_c.im;
+	vars->julia_c = julia_c;
 	if (ft_strncmp(frctl_name, "mandelbrot", 11) == 0)
 		vars->fd->fractal_func = &mandelbrot;
 	else if (ft_strncmp(frctl_name, "julia", 6) == 0)
@@ -105,8 +104,6 @@ void	free_all(t_vars *vars)
 {
 	if (!vars)
 		return ;
-	if (vars->julia_c)
-		free(vars->julia_c);
 	if (vars->id)
 	{
 		if (vars->id->img)

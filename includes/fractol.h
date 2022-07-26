@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:39:57 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/26 17:02:50 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:10:59 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_vars
 	double			scale;
 	double			offset_x;
 	double			offset_y;
-	t_complex		*julia_c;
+	t_complex		julia_c;
 	t_imgdata		*id;
 	t_fractaldata	*fd;
 }				t_vars;
