@@ -6,29 +6,47 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:56:41 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/20 17:21:26 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:58:20 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-unsigned int	choose_color(unsigned int i, t_vars *vars)
+UINT	choose_color(UINT i, t_vars *vars)
 {
-	if (vars->fd->iters == vars->fd->color_count)
-		return (vars->fd->colors[i]);
-	else
-		return (vars->fd->colors[i % vars->fd->color_count]);
-	return (0);
+	return (vars->fd->colors[i % vars->fd->color_count]);
 }
 
-int	*init_colorscheme_1(t_vars *vars)
+void	assign_fractal_colors(int index, t_vars *vars)
 {
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
+	if (vars->fd->colors)
+		free(vars->fd->colors);
+	if (index == 1)
+		vars->fd->colors = init_colorscheme_2(vars);
+	else if (index == 2)
+		vars->fd->colors = init_colorscheme_3(vars);
+	else if (index == 3)
+		vars->fd->colors = init_colorscheme_4(vars);
+	else if (index == 4)
+		vars->fd->colors = init_colorscheme_5(vars);
+	else if (index == 5)
+		vars->fd->colors = init_colorscheme_6(vars);
+	else if (index == 6)
+		vars->fd->colors = init_colorscheme_7(vars);
+	else if (index == 7)
+		vars->fd->colors = init_colorscheme_8(vars);
+	else
+		vars->fd->colors = init_colorscheme_1(vars);
+}
 
-	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
+UINT	*init_colorscheme_1(t_vars *vars)
+{
+	UINT	*colors;
+	UINT	gsc;
+	UINT	augment;
+	UINT	i;
+
+	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(UINT));
 	if (!colors)
 		return (0);
 	gsc = 0x00000000;
@@ -48,14 +66,14 @@ int	*init_colorscheme_1(t_vars *vars)
 	return (colors);
 }
 
-int	*init_colorscheme_2(t_vars *vars)
+UINT	*init_colorscheme_2(t_vars *vars)
 {
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
+	UINT	*colors;
+	UINT	gsc;
+	UINT	augment;
+	UINT	i;
 
-	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
+	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(UINT));
 	if (!colors)
 		return (0);
 	gsc = 0x00000000;
@@ -73,14 +91,14 @@ int	*init_colorscheme_2(t_vars *vars)
 	return (colors);
 }
 
-int	*init_colorscheme_3(t_vars *vars)
+UINT	*init_colorscheme_3(t_vars *vars)
 {
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
+	UINT	*colors;
+	UINT	gsc;
+	UINT	augment;
+	UINT	i;
 
-	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
+	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(UINT));
 	if (!colors)
 		return (0);
 	gsc = 0x00000000;
@@ -90,31 +108,6 @@ int	*init_colorscheme_3(t_vars *vars)
 	while (i < vars->fd->iters)
 	{
 		gsc += augment << 8;
-		colors[i] = gsc;
-		i++;
-	}
-	colors[i++] = 0x00000000;
-	vars->fd->color_count = vars->fd->iters;
-	return (colors);
-}
-
-int	*init_colorscheme_4(t_vars *vars)
-{
-	int				*colors;
-	unsigned int	gsc;
-	unsigned int	augment;
-	unsigned int	i;
-
-	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(int));
-	if (!colors)
-		return (0);
-	gsc = 0x00000000;
-	colors[0] = gsc;
-	augment = 256 / vars->fd->iters;
-	i = 1;
-	while (i < vars->fd->iters)
-	{
-		gsc += augment;
 		colors[i] = gsc;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:42:46 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/21 15:21:08 by sergiodg         ###   ########.fr       */
+/*   Updated: 2022/07/27 16:41:22 by sergiodg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	key_hook(int keycode, t_vars *vars)
 	// Left: 123
 	// Right: 124
 	// Esc: 53
-	printf("keycode: %d\n", keycode);
+	// printf("keycode: %d\n", keycode);
 	change_colors(keycode, vars);
 	if (keycode == 65307)
 	{
@@ -58,6 +58,6 @@ int	mouse_hook(int button, int x, int y, t_vars *vars)
 
 void	change_colors(int keycode, t_vars *vars)
 {
-	if (keycode >= 49 && keycode <= 55)
+	if (keycode >= 49 && keycode <= 56)
 		assign_fractal_colors(keycode - 49, vars);
 }

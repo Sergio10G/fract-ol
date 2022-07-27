@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:00:26 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/07/20 17:23:47 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:05:55 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_vars	*init_vars(void)
 	vars->offset_x = 3.0;
 	vars->offset_y = 1.5;
 	vars->mlx = mlx_init();
+	vars->julia_c.re = 0;
+	vars->julia_c.im = 0;
 	return (vars);
 }
 
