@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:40:09 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/10/03 17:13:46 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:46:17 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ t_complex	check_params(int argc, char **argv, char *fractal)
 char	**extract_julia_nums(int argc, char **argv)
 {
 	char	**num_strs;
-	
+	int		i;
+
 	if (argc == 3)
 	{
 		num_strs = ft_split(argv[2], ' ');
@@ -60,28 +61,12 @@ char	**extract_julia_nums(int argc, char **argv)
 t_complex	check_julia_params(int argc, char **argv)
 {
 	char		**num_strs;
-	int			i;
 	int			nums_ok;
 	t_complex	julia_c;
 
 	julia_c.re = 0;
 	julia_c.im = 0;
-	if (argc == 3)
-	{
-		num_strs = ft_split(argv[2], ' ');
-		i = 0;
-		while (num_strs[i])
-			i++;
-		if (i != 2)
-			err_print_options(22);
-	}
-	else
-	{
-		num_strs = ft_calloc(3, sizeof(char *));
-		num_strs[0] = ft_strdup(argv[2]);
-		num_strs[1] = ft_strdup(argv[3]);
-		num_strs[2] = 0;
-	}
+	num_strs = extract_julia_nums(argc, argv);
 	nums_ok = check_julia_nums(num_strs);
 	if (nums_ok)
 	{
@@ -101,12 +86,12 @@ int	check_julia_nums(char **julia_nums)
 	int	dot_index;
 	int	dot_count;
 
-	i = 0;
-	while (julia_nums[i])
+	i = -1;
+	while (julia_nums[++i])
 	{
 		dot_count = 0;
-		j = 0;
-		while (julia_nums[i][j])
+		j = -1;
+		while (julia_nums[i][++j])
 		{
 			if (julia_nums[i][j] == '.')
 			{
@@ -114,15 +99,11 @@ int	check_julia_nums(char **julia_nums)
 				dot_count++;
 			}
 			else
-			{
 				if (!ft_isdigit(julia_nums[i][j]) && julia_nums[i][j] != '-')
 					return (0);
-			}
-			j++;
 		}
-		if (dot_count != 1 || dot_index == 0 || dot_index == (int) ft_strlen(julia_nums[i]))
+		if (dot_count > 1 || dot_index == (int) ft_strlen(julia_nums[i]) - 1)
 			return (0);
-		i++;
 	}
 	return (1);
 }

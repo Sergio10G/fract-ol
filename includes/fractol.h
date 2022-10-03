@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:39:57 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/10/03 17:13:48 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:18:15 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int				mouse_hook(int button, int x, int y, t_vars *vars);
 void			change_colors(int keycode, t_vars *vars);
 
 /* input_parse.c functions */
+char			**extract_julia_nums(int argc, char **argv);
 t_complex		check_params(int argc, char **argv, char *fractal);
 t_complex		check_julia_params(int argc, char **argv);
 int				check_julia_nums(char **julia_nums);
