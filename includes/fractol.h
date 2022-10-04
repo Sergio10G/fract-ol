@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:39:57 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/10/03 17:18:15 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:56:23 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ char			**extract_julia_nums(int argc, char **argv);
 t_complex		check_params(int argc, char **argv, char *fractal);
 t_complex		check_julia_params(int argc, char **argv);
 int				check_julia_nums(char **julia_nums);
-void			free_mat(char **str);
+int				check_num(char *num);
 
 /* utils.c functions */
-void			ft_strtoupper(char *str);
 double			ft_atod(char *num);
+void			free_mat(char **str);
 
 /* init_structs.c functions */
 t_vars			*init_vars(void);

@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:55:03 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/10/03 18:02:38 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:28:12 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ UINT	*init_colorscheme_4(t_vars *vars)
 	UINT	augment;
 	UINT	i;
 
-	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(UINT));
+	colors = ft_calloc(1, (vars->fd->iters) * sizeof(UINT));
 	if (!colors)
 		return (0);
 	gsc = 0x00000000;
@@ -32,7 +32,6 @@ UINT	*init_colorscheme_4(t_vars *vars)
 		colors[i] = gsc;
 		i++;
 	}
-	colors[i++] = 0x00000000;
 	vars->fd->color_count = vars->fd->iters;
 	return (colors);
 }
@@ -44,7 +43,7 @@ UINT	*init_colorscheme_5(t_vars *vars)
 	UINT	augment;
 	UINT	i;
 
-	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(UINT));
+	colors = ft_calloc(1, (vars->fd->iters) * sizeof(UINT));
 	if (!colors)
 		return (0);
 	gsc = 0x00000000;
@@ -58,7 +57,6 @@ UINT	*init_colorscheme_5(t_vars *vars)
 		colors[i] = gsc;
 		i++;
 	}
-	colors[i++] = 0x00000000;
 	vars->fd->color_count = vars->fd->iters;
 	return (colors);
 }
@@ -70,7 +68,7 @@ UINT	*init_colorscheme_6(t_vars *vars)
 	UINT	augment;
 	UINT	i;
 
-	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(UINT));
+	colors = ft_calloc(1, (vars->fd->iters) * sizeof(UINT));
 	if (!colors)
 		return (0);
 	gsc = 0x00000000;
@@ -84,7 +82,6 @@ UINT	*init_colorscheme_6(t_vars *vars)
 		colors[i] = gsc;
 		i++;
 	}
-	colors[i++] = 0x00000000;
 	vars->fd->color_count = vars->fd->iters;
 	return (colors);
 }
@@ -96,7 +93,7 @@ UINT	*init_colorscheme_7(t_vars *vars)
 	UINT	augment;
 	UINT	i;
 
-	colors = ft_calloc(1, (vars->fd->iters + 1) * sizeof(UINT));
+	colors = ft_calloc(1, (vars->fd->iters) * sizeof(UINT));
 	if (!colors)
 		return (0);
 	gsc = 0x00000000;
@@ -110,7 +107,6 @@ UINT	*init_colorscheme_7(t_vars *vars)
 		colors[i] = gsc;
 		i++;
 	}
-	colors[i++] = 0x00000000;
 	vars->fd->color_count = vars->fd->iters;
 	return (colors);
 }

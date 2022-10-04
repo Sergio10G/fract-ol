@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:40:09 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/10/03 17:46:17 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:54:34 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ char	**extract_julia_nums(int argc, char **argv)
 		while (num_strs[i])
 			i++;
 		if (i != 2)
+		{
+			free_mat(num_strs);
 			err_print_options(22);
+		}
 	}
 	else
 	{
@@ -82,38 +85,42 @@ t_complex	check_julia_params(int argc, char **argv)
 int	check_julia_nums(char **julia_nums)
 {
 	int	i;
-	int	j;
-	int	dot_index;
-	int	dot_count;
 
-	i = -1;
-	while (julia_nums[++i])
+	i = 0;
+	while (julia_nums[i])
 	{
-		dot_count = 0;
-		j = -1;
-		while (julia_nums[i][++j])
-		{
-			if (julia_nums[i][j] == '.')
-			{
-				dot_index = j;
-				dot_count++;
-			}
-			else
-				if (!ft_isdigit(julia_nums[i][j]) && julia_nums[i][j] != '-')
-					return (0);
-		}
-		if (dot_count > 1 || dot_index == (int) ft_strlen(julia_nums[i]) - 1)
+		if (!check_num(julia_nums[i]))
 			return (0);
+		i++;
 	}
 	return (1);
 }
 
-void	free_mat(char **str)
+int	check_num(char *num)
 {
-	int	i;
+	int	j;
+	int	dot_index;
+	int	dot_count;
+	int	min_count;
 
-	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str);
+	dot_index = 0;
+	dot_count = 0;
+	min_count = 0;
+	j = -1;
+	while (num[++j])
+	{
+		if (num[j] == '.')
+		{
+			dot_index = j;
+			dot_count++;
+		}
+		else if (num[j] == '-')
+			min_count++;
+		else
+			if (!ft_isdigit(num[j]))
+				return (0);
+	}
+	if (dot_count > 1 || min_count > 1 || dot_index == (int) ft_strlen(num) - 1)
+		return (0);
+	return (1);
 }

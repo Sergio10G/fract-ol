@@ -6,7 +6,7 @@
 #    By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 17:51:37 by sdiez-ga          #+#    #+#              #
-#    Updated: 2022/07/18 17:57:09 by sdiez-ga         ###   ########.fr        #
+#    Updated: 2022/10/04 17:04:39 by sdiez-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ $(NAME)			:	$(OBJS)
 					echo "$(PINK)libft compiled!$(RESET)"
 					make -C minilibx/ --silent
 					echo "$(PINK)minilibX compiled!$(RESET)"
-					$(CC) $(OBJS) $(MLXFLAGS) libft/libft.a -o $(NAME) -O3
+					$(CC) $(OBJS) $(MLXFLAGS) libft/libft.a minilibx/libmlx.a -o $(NAME)
 					echo "$(GREEN)fract-ol compiled!$(RESET)"
 
 all				:	$(NAME)
