@@ -26,7 +26,7 @@
 //	Macros
 # define DEF_WIDTH 1024
 # define DEF_HEIGHT 576
-# define ITERS 50
+# define ITERS 100
 # define UINT unsigned int
 
 // Structs

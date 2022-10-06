@@ -19,7 +19,7 @@ int	key_hook(int keycode, t_vars *vars)
 	// Left: 123
 	// Right: 124
 	// Esc: 53
-	// printf("keycode: %d\n", keycode);
+	//printf("keycode: %d\n", keycode);
 	change_colors(keycode, vars);
 	if (keycode == 65307)
 	{
@@ -38,6 +38,8 @@ int	key_hook(int keycode, t_vars *vars)
 		vars->scale += vars->scale / 10.0;
 	else if (keycode == 65453)
 		vars->scale -= vars->scale / 10.0;
+	else if (keycode == 65540)
+		vars->fd->iters += 50;
 	paint_fractal(vars);
 	return (0);
 }
