@@ -30,7 +30,7 @@ CC				=	gcc
 
 CFLAGS			=	-Wall -Werror -Wextra
 
-MLXFLAGS		=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+MLXFLAGS		=	-Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 MAKEFLAGS		+=	--silent
 
@@ -48,7 +48,7 @@ $(NAME)			:	$(OBJS)
 					echo "$(PINK)libft compiled!$(RESET)"
 					make -C minilibx/ --silent
 					echo "$(PINK)minilibX compiled!$(RESET)"
-					$(CC) $(OBJS) libft/libft.a minilibx/libmlx.a minilibx/libmlx_Linux.a -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+					$(CC) $(OBJS) libft/libft.a minilibx/libmlx.a minilibx/libmlx_Linux.a $(MLXFLAGS) -o $(NAME)
 					echo "$(GREEN)fract-ol compiled!$(RESET)"
 
 all			:	$(NAME)
