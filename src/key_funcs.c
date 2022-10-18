@@ -34,9 +34,9 @@ int	key_hook(int keycode, t_vars *vars)
 		vars->offset_x += 0.1;
 	else if (keycode == 65363)
 		vars->offset_x -= 0.1;
-	else if (keycode == 65451)
-		vars->scale += vars->scale / 10.0;
 	else if (keycode == 65453)
+		vars->scale += vars->scale / 10.0;
+	else if (keycode == 65451)
 		vars->scale -= vars->scale / 10.0;
 	else if (keycode == 65540)
 		vars->fd->iters += 50;
