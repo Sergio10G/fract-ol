@@ -16,17 +16,21 @@
 //	Libraries
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
+#include <bits/pthreadtypes.h>
 # include <math.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <pthread.h>
+# include <sys/time.h>
 
 //	Macros
-# define DEF_WIDTH 1024
-# define DEF_HEIGHT 576
+# define DEF_WIDTH 1920
+# define DEF_HEIGHT 1080
 # define ITERS 50
+# define THREADS 8
 # define UINT unsigned int
 
 // Structs
@@ -57,17 +61,26 @@ typedef struct s_fractaldata
 
 typedef struct s_vars
 {
-	void			*mlx;
-	void			*win;
-	int				width;
-	int				height;
-	double			scale;
-	double			offset_x;
-	double			offset_y;
-	t_complex		julia_c;
-	t_imgdata		*id;
-	t_fractaldata	*fd;
+	void						*mlx;
+	void						*win;
+	int							width;
+	int							height;
+	double					scale;
+	double					offset_x;
+	double					offset_y;
+	double					center_x;
+	double					center_y;
+	t_complex				julia_c;
+	t_imgdata				*id;
+	t_fractaldata		*fd;
+	pthread_mutex_t	*img_mtx;
 }				t_vars;
+
+typedef struct s_thread_vars
+{
+	int			thread_num;
+	t_vars	*vars;
+}				t_thread_vars;
 //	Functions
 
 /* fractol.c functions */
@@ -78,11 +91,14 @@ void			free_all(t_vars *vars);
 
 /* transform_funcs.c functions */
 t_complex		*transform_coordinates(t_complex *coords, t_vars *vars);
+t_complex		apply_transform_old(t_complex coords, t_vars *vars);
 t_complex		apply_transform(t_complex coords, t_vars *vars);
 
 /* img_funcs.c functions */
 void			img_pixel_put(t_imgdata *data, int x, int y, UINT color);
 void			paint_fractal(t_vars *vars);
+void			paint_fractal_mt(t_vars *vars);
+void			*paint_slice(void *args);
 void			transform_z_assign_c(t_complex *z, t_complex *c, t_vars *vars);
 
 /* color_funcs.c & color_funcs2.c functions */

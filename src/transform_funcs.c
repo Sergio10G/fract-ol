@@ -18,7 +18,7 @@ t_complex	*transform_coordinates(t_complex *coords, t_vars *vars)
 	return (coords);
 }
 
-t_complex	apply_transform(t_complex coords, t_vars *vars)
+t_complex	apply_transform_old(t_complex coords, t_vars *vars)
 {
 	coords.re = ((double)(coords.re * 5.0) / vars->width) - \
 				vars->offset_x;
@@ -26,5 +26,14 @@ t_complex	apply_transform(t_complex coords, t_vars *vars)
 				vars->offset_y;
 	coords.re *= vars->scale;
 	coords.im *= vars->scale;
+	return (coords);
+}
+
+t_complex	apply_transform(t_complex coords, t_vars *vars)
+{
+	coords.re = vars->center_x + \
+		(coords.re - vars->width / 2.0) * (0.005) * vars->scale;
+	coords.im = vars->center_y + \
+		(coords.im - vars->height / 2.0) * (0.005) * vars->scale;
 	return (coords);
 }

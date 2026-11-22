@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+#include <bits/pthreadtypes.h>
 
 t_vars	*init_vars(void)
 {
@@ -24,9 +25,14 @@ t_vars	*init_vars(void)
 	vars->scale = 1.0;
 	vars->offset_x = 3.0;
 	vars->offset_y = 1.5;
+	vars->center_x = -0.5;
+	vars->center_y = 0.0;
 	vars->mlx = mlx_init();
 	vars->julia_c.re = 0;
 	vars->julia_c.im = 0;
+	// TODO: Controlar la creación del mutex
+	vars->img_mtx = malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(vars->img_mtx, 0);
 	return (vars);
 }
 

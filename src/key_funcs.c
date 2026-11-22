@@ -14,6 +14,8 @@
 
 int	key_hook(int keycode, t_vars *vars)
 {
+	//struct timeval t1, t2;
+	//double elapsed_time = 0;
 	// Up: 126
 	// Down: 125
 	// Left: 123
@@ -27,20 +29,30 @@ int	key_hook(int keycode, t_vars *vars)
 		exit(0);
 	}
 	else if (keycode == 65362)
-		vars->offset_y += 0.1;
+		//vars->offset_y += 0.1;
+		vars->center_y -= 0.1 * vars->scale;
 	else if (keycode == 65364)
-		vars->offset_y -= 0.1;
+		//vars->offset_y -= 0.1;
+		vars->center_y += 0.1 * vars->scale;
 	else if (keycode == 65361)
-		vars->offset_x += 0.1;
+		//vars->offset_x += 0.1;
+		vars->center_x -= 0.1 * vars->scale;
 	else if (keycode == 65363)
-		vars->offset_x -= 0.1;
+		//vars->offset_x -= 0.1;
+		vars->center_x += 0.1 * vars->scale;
 	else if (keycode == 65451)
-		vars->scale += vars->scale / 10.0;
+		//vars->scale += vars->scale / 10.0;
+		vars->scale *= 0.9;
 	else if (keycode == 65453)
-		vars->scale -= vars->scale / 10.0;
+		//vars->scale -= vars->scale / 10.0;
+		vars->scale /= 0.9;
 	else if (keycode == 65540)
 		vars->fd->iters += 50;
-	paint_fractal(vars);
+	//gettimeofday(&t1, 0);
+	paint_fractal_mt(vars);
+	//gettimeofday(&t2, 0);
+	//elapsed_time += (t2.tv_usec - t1.tv_usec) / 1000.0;
+	//printf("%f ms.\n", elapsed_time);
 	return (0);
 }
 
